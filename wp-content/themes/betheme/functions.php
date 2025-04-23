@@ -114,6 +114,9 @@ if (! isset($post_types_disable['template'])) {
 if (! isset($post_types_disable['client'])) {
 	require_once(get_theme_file_path('/functions/post-types/class-mfn-post-type-client.php'));
 }
+if (! isset($post_types_disable['collectie'])) {
+	require_once(get_theme_file_path('/functions/post-types/class-mfn-post-type-collectie.php'));
+}
 if (! isset($post_types_disable['offer'])) {
 	require_once(get_theme_file_path('/functions/post-types/class-mfn-post-type-offer.php'));
 }
