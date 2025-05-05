@@ -272,6 +272,7 @@ if ( ! class_exists( 'Mfn_Post_Type_Collectie' ) ) {
 				'menu_icon' => 'dashicons-car',
 				'public' => true,
 				'show_ui' => true,
+				'has_archive' => true,
 				'show_admin_column'	 => true,
 				'rewrite' => [ 'slug' => 'collectie', 'with_front' => false ],
 				'hierarchical' => true,
@@ -315,19 +316,20 @@ if ( ! class_exists( 'Mfn_Post_Type_Collectie' ) ) {
 			global $post;
 
 			switch ($column) {
-  			case 'collectie_thumbnail':
-  				if (has_post_thumbnail()) {
-  					the_post_thumbnail('50x50');
-  				}
-  				break;
-  			case 'collectie_types':
-  				echo get_the_term_list($post->ID, 'collectie-types', '', ', ', '');
-  				break;
-  			case 'collectie_order':
-  				echo esc_html($post->menu_order);
-  				break;
-  		}
+				case 'collectie_thumbnail':
+					if (has_post_thumbnail()) {
+						the_post_thumbnail('50x50');
+					}
+					break;
+				case 'collectie_types':
+					echo get_the_term_list($post->ID, 'collectie-types', '', ', ', '');
+					break;
+				case 'collectie_order':
+					echo esc_html($post->menu_order);
+					break;
+			}
 		}
+
 
 	}
 }
