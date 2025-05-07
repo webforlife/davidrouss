@@ -1,11 +1,14 @@
 <?php
+
 /**
- * Template Name: Collectie archief
+ * Archive Collectie
+ * Template Post Type: collectie
  *
  * @package Betheme
- * @author Muffin Group
+ * @author Muffin group
  * @link https://muffingroup.com
  */
+
 
 get_header();
 
@@ -209,6 +212,7 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
 
 </style>
 
+
 <div id="Content" role="main">
     <div class="content_wrapper clearfix">
 
@@ -239,21 +243,20 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                         <div class="archive-grid">
 
                             <?php
-                            	$paged = (get_query_var('paged')) ? get_query_var('paged') : 0;
+                                $paged = (get_query_var('paged')) ? get_query_var('paged') : 0;
 
                                 $args = [
                                     'post_type' => 'collectie',
+                                    'paged' => $paged,
                                     'posts_per_page' => 3,
                                     'orderby' => 'date',
                                     'order'   => 'DESC',
-                                    'paged' => $paged,
                                     'tax_query' => array(
-										array (
-											'taxonomy' => 'collectie-categories',
-											'field' => 'slug',
-											'terms' => 'archief',
-										)
-									)
+                                        array(
+                                            'taxonomy' => 'collectie-categories',
+                                            'operator' => 'NOT EXISTS',
+                                        ),
+                                    ),
                                 ];
 
                                 $query = new WP_Query($args);
@@ -317,14 +320,14 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                         echo '<div class="pagination" style="display: flex; justify-content: center; flex-wrap: wrap; width: 100%;">';
 
 
-                                        echo paginate_links(array(
-                                            'base' => get_pagenum_link(1) . '%_%',
-                                            'format' => 'page/%#%',
-                                            'current' => $current_page,
-                                            'total' => $total_pages,
-                                            'prev_text'    => __('« Vorige'),
-                                            'next_text'    => __('Volgende »'),
-                                        ));
+										echo paginate_links(array(
+											'base' => get_pagenum_link(1) . '%_%',
+											'format' => 'page/%#%',
+											'current' => $current_page,
+											'total' => $total_pages,
+											'prev_text'    => __('« Vorige'),
+											'next_text'    => __('Volgende »'),
+										));
 
                                         echo '</div>';
 

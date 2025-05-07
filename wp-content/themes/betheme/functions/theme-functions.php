@@ -16,6 +16,21 @@ function be_dynamic_data($string, $post_id = false){
  	return $mfndd->render($string, $post_id);
 }
 
+
+/**
+ * Custom page per posts for the blog posts
+ */
+add_action( 'pre_get_posts', function ( \WP_Query $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+
+	if ( is_post_type_archive( 'collectie' ) ) {
+		$query->set( 'posts_per_page', 3 );
+	}
+
+} );
+
 /**
  * Allowed HTML elements for wp_kses
  */
