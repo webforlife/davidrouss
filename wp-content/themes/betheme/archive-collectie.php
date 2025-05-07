@@ -248,7 +248,7 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                 $args = [
                                     'post_type' => 'collectie',
                                     'paged' => $paged,
-                                    'posts_per_page' => 3,
+                                    'posts_per_page' => 12,
                                     'orderby' => 'date',
                                     'order'   => 'DESC',
                                     'tax_query' => array(

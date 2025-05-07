@@ -26,7 +26,7 @@ add_action( 'pre_get_posts', function ( \WP_Query $query ) {
 	}
 
 	if ( is_post_type_archive( 'collectie' ) ) {
-		$query->set( 'posts_per_page', 3 );
+		$query->set( 'posts_per_page', 12 );
 	}
 
 } );
