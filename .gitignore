@@ -1,0 +1,71 @@
+# WP generated files #
+######################
+wp-content/backup/*
+wp-content/cache/*
+wp-content/upgrade/*
+wp-content/uploads/*
+
+# NPM & Gulp workflow specific files #
+######################################
+node_modules
+gulp.env
+.env
+
+# Plugin generated files #
+##########################
+sitemap.*
+/conf/
+!Sitemap.php
+
+# Files for local use only #
+############################
+.htaccess
+local-config.php
+
+# Prev excluded files #
+#######################
+!wp-content/uploads/.htaccess
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+*.DS_Store
+*[Tt]humbs.db
+*.Trashes
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+*LICENSE.txt
+
+# Don't include build assets in .git
+/wp-content/themes/instamat/assets/build/
