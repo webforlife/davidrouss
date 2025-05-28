@@ -10394,16 +10394,24 @@ if (! function_exists('sc_lottie')) {
 			foreach ($featured_items as $item) {
 
 				$output .= '<div class="cards__item">';
-					$output .= '<a class="card" href="' . get_permalink($item) . '">';
+					$output .= '<div class="card">';
+
+						$output .= '<a class="card__link" href="' . get_permalink($item) . '"></a>';
 						$output .= '<figure class="card__image ratio">';
 						if (has_post_thumbnail($item)) {
 							$output .= wp_get_attachment_image(get_post_thumbnail_id($item), 'full');
 						}
+
+						if($popupId = get_post_meta($item, 'popup_video_id', true)) {
+							$output .= '<a class="video_link link pum-trigger" href="' . get_permalink() . $popupId . '" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; color: rgb(0, 0, 0); border-bottom-left-radius: 4px; cursor: pointer; z-index: 4;">
+									<i class="icon-videocam-line" style="font-size: 1.5em; color: white;"></i>
+								</a>';
+							}
 						$output .= '</figure>';
 
 						$output .= '<div class="card__content">';
 							$output .= '<header class="card__header">';
-							$output .= '<h3 class="card__title">' . get_the_title($item) . '</h3>';
+								$output .= '<h3 class="card__title">' . get_the_title($item) . '</h3>';
 							$output .= '</header>';
 
 							$output .= '<div class="card__metas">';
@@ -10427,7 +10435,7 @@ if (! function_exists('sc_lottie')) {
 							}
 
 						$output .= '</div>';
-					$output .= '</a>';
+					$output .= '</div>';
 				$output .= '</div>';
 
 			}

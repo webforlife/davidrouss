@@ -324,6 +324,12 @@ get_header();
 									<div class="column mcb-column one laptop-one tablet-one mobile-one column_image" style="height: 100%;">
 										<div class="mcb-column-inner mfn-module-wrapper mcb-item-image-inner" style="height: 100%;">
 
+											<?php if($popupId = get_post_meta(get_the_ID(), 'popup_video_id', true)): ?>
+												<a class="video_link link pum-trigger" href="<?= get_permalink() . $popupId; ?>" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; border-bottom-left-radius: 4px; color: rgb(0, 0, 0); cursor: pointer; z-index: 4;">
+													<i class="icon-videocam-line" style="font-size: 1.5em; color: white;"></i>
+												</a>
+											<?php endif; ?>
+
 											<?php if ( !empty($images = get_field('images')) ): ?>
 
 												<div class="swiper js-collection-slider">

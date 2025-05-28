@@ -265,10 +265,16 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                     while ($query->have_posts()) : $query->the_post();
                             ?>
 
-                                <a class="card" href="<?php the_permalink(); ?>">
+                                <div class="card">
+                                    <a class="card__link" href="<?php the_permalink(); ?>"></a>
                                     <figure class="card__image ratio">
                                         <?php if (has_post_thumbnail()) : ?>
                                             <?= wp_get_attachment_image(get_post_thumbnail_id(), 'thumbnail'); ?>
+                                        <?php endif; ?>
+                                        <?php if($popupId = get_post_meta(get_the_ID(), 'popup_video_id', true)): ?>
+                                            <a class="video_link link pum-trigger" href="<?= get_permalink() . $popupId; ?>" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; border-bottom-left-radius: 4px; color: rgb(0, 0, 0); cursor: pointer; z-index: 4;">
+                                                <i class="icon-videocam-line" style="font-size: 1.5em; color: white;"></i>
+                                            </a>
                                         <?php endif; ?>
                                     </figure>
 
@@ -304,7 +310,7 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                             </div>
                                         <?php endif; ?>
                                     </div>
-                                </a>
+                                </div>
 
                                 <?php
 
