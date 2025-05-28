@@ -305,7 +305,8 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
 
                                         <?php if ($price = get_field('price')): ?>
                                             <div class="card__price">
-                                                <span class="title">€ <?= $price ?> inclusief BTW</span>
+                                                <s><span class="title">€ <?= $price ?> inclusief BTW</span></s>
+                                                <span class="title">VERKOCHT</span>
                                             </div>
                                         <?php endif; ?>
                                     </div>
