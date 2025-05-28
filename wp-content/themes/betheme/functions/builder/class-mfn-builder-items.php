@@ -1020,6 +1020,14 @@ if( ! class_exists('Mfn_Builder_Items') )
 		}
 
 		/**
+		 * [collection]
+		 */
+
+		public static function item_collection( $fields ){
+			echo sc_collection( $fields );
+		}
+
+		/**
 		 * [portfolio]
 		 */
 

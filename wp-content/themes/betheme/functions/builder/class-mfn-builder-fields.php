@@ -7052,6 +7052,13 @@ if( ! class_exists('Mfn_Builder_Fields') )
 
    		$this->items = array(
 
+			'collection' => array(
+				'type' => 'collection',
+				'title' => __('Collection', 'mfn-opts'),
+				'size' => '1/1',
+				'cat' => 'loops',
+			),
+
 		// thank you ----------------------------------------------------
 
    			'thankyou_overview' => array(

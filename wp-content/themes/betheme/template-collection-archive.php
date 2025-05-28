@@ -279,12 +279,12 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                         <div class="card__metas">
                                             <?php if ($amount_of_km = get_field('amount_of_km', get_the_ID())): ?>
                                                 <div class="card__meta">
-                                                    Kilometerstand: <?= $amount_of_km; ?>
+                                                    KM stand: <?= $amount_of_km; ?>
                                                 </div>
                                             <?php endif; ?>
                                             <?php if ($date_of_registration = get_field('date_of_registration')): ?>
                                                 <div class="card__meta">
-                                                    Inschrijvingsdatum: <?= $date_of_registration; ?>
+                                                    Inschrijving: <?= $date_of_registration; ?>
                                                 </div>
                                             <?php endif; ?>
                                             <?php if ($amount_of_pk = get_field('amount_of_pk')): ?>

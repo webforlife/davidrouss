@@ -10376,6 +10376,72 @@ if (! function_exists('sc_lottie')) {
 	}
 }
 
+
+/**
+ * Collection [collection]
+ */
+
+ if (! function_exists('sc_collection')) {
+	function sc_collection($attr, $content = null) {
+
+		// Default layout grid
+		$output = '<div class="cards">';
+
+		$featured_items = get_field('featured_collection', 'options');
+
+		if (!empty($featured_items)) {
+
+			foreach ($featured_items as $item) {
+
+				$output .= '<div class="cards__item">';
+					$output .= '<a class="card" href="' . get_permalink($item) . '">';
+						$output .= '<figure class="card__image ratio">';
+						if (has_post_thumbnail($item)) {
+							$output .= wp_get_attachment_image(get_post_thumbnail_id($item), 'full');
+						}
+						$output .= '</figure>';
+
+						$output .= '<div class="card__content">';
+							$output .= '<header class="card__header">';
+							$output .= '<h3 class="card__title">' . get_the_title($item) . '</h3>';
+							$output .= '</header>';
+
+							$output .= '<div class="card__metas">';
+
+								if ($amount_of_km = get_field('amount_of_km', $item)) {
+									$output .= '<div class="card__meta">KM stand: ' . $amount_of_km . '</div>';
+								}
+								if ($date_of_registration = get_field('date_of_registration', $item)) {
+									$output .= '<div class="card__meta">Inschrijving: ' . $date_of_registration . '</div>';
+								}
+								if ($amount_of_pk = get_field('amount_of_pk', $item)) {
+									$output .= '<div class="card__meta">Vermogen: ' . $amount_of_pk . '</div>';
+								}
+
+							$output .= '</div>';
+
+							if ($price = get_field('price', $item)) {
+								$output .= '<div class="card__price">';
+								$output .= '<span class="title">€ ' . $price . '</span>';
+								$output .= '</div>';
+							}
+
+						$output .= '</div>';
+					$output .= '</a>';
+				$output .= '</div>';
+
+			}
+		}
+
+		$output .= '</div>';
+
+
+		wp_reset_postdata();
+
+		return $output;
+	}
+}
+
 /**
  * Portfolio [portfolio]
  */
@@ -13733,6 +13799,7 @@ if (! function_exists('mfn_shortcodes')) {
 		add_shortcode('our_team', 'sc_our_team');
 		add_shortcode('our_team_list', 'sc_our_team_list');
 		add_shortcode('photo_box', 'sc_photo_box');
+		add_shortcode('collection', 'sc_collection');
 		add_shortcode('portfolio', 'sc_portfolio');
 		add_shortcode('portfolio_grid', 'sc_portfolio_grid');
 		add_shortcode('portfolio_photo', 'sc_portfolio_photo');

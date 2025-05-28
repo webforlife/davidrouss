@@ -463,14 +463,14 @@ get_header();
 													<div class="grid">
 														<?php if ($amount_of_km = get_field('amount_of_km')): ?>
 															<div class="grid-item">
-																<strong>Kilometerstand</strong>
+																<strong>KM stand</strong>
 																<br>
 																<?= $amount_of_km; ?>
 															</div>
 														<?php endif; ?>
 														<?php if ($date_of_registration = get_field('date_of_registration')): ?>
 															<div class="grid-item">
-																<strong>Inschrijvingsdatum</strong>
+																<strong>Inschrijving</strong>
 																<br>
 																<?= $date_of_registration; ?>
 															</div>
