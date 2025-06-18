@@ -414,7 +414,7 @@ get_header();
 													<?php if($sold): ?>
 														<span class="title">VERKOCHT</span>
 													<?php else: ?>
-														<span class="title">€ <?= $price ?> inclusief BTW</span>
+														<span class="title">€ <?= $price ?></span>
 													<?php endif; ?>
 												</div>
 											</div>
