@@ -400,15 +400,18 @@ get_header();
 											<?php if ($price = get_field('price')): ?>
 												<?php $terms = get_the_terms( get_the_ID(), 'collectie-categories' ); ?>
 												<?php $sold = false; ?>
+
+												<?php if ($terms): ?>
 												<?php foreach ( $terms as $key => $value ) {
 													if ( $value->slug === 'archief' ) {
 														$sold = true;
 													}
 												}; ?>
+
+												<?php endif; ?>
 											<div class="column mcb-column one laptop-one tablet-one mobile-one column_heading">
 												<div class="mcb-column-inner button-outline mfn-module-wrapper mcb-item-heading-inner">
 													<?php if($sold): ?>
-														<s><span class="title">€ <?= $price ?> inclusief BTW</span></s>
 														<span class="title">VERKOCHT</span>
 													<?php else: ?>
 														<span class="title">€ <?= $price ?> inclusief BTW</span>
