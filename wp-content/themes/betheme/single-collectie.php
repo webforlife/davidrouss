@@ -338,7 +338,7 @@ get_header();
 															<div class="swiper-slide">
 																<div class="image_frame image_item no_link scale-with-grid alignnone no_border mfn-coverimg" style="height: 100%; border-radius: 4px;">
 																	<div class="image_wrapper mfn-coverimg-wrapper" style="height: 100%;">
-																		<img class="scale-with-grid" src="<?= wp_get_attachment_image($image) ?>" alt="" title="" width="" height="">
+																		<?= wp_get_attachment_image($image, 'full') ?>
 																	</div>
 																</div>
 															</div>
@@ -354,7 +354,7 @@ get_header();
 											<?php else: ?>
 												<div class="image_frame image_item no_link scale-with-grid alignnone no_border mfn-coverimg" style="height: 100%; border-radius: 4px;">
 													<div class="image_wrapper mfn-coverimg-wrapper" style="height: 100%;">
-														<?= get_the_post_thumbnail() ?>
+														<?= get_the_post_thumbnail($post, 'full') ?>
 													</div>
 												</div>
 											<?php endif; ?>
