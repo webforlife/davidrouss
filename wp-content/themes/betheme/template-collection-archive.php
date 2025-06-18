@@ -267,7 +267,7 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                     <a class="card__link" href="<?php the_permalink(); ?>"></a>
                                     <figure class="card__image ratio">
                                         <?php if (has_post_thumbnail()) : ?>
-                                            <?= wp_get_attachment_image(get_post_thumbnail_id(), 'full'); ?>
+                                            <?= get_the_post_thumbnail($post, 'full') ?>
                                         <?php endif; ?>
 
                                         <?php if($popupId = get_post_meta(get_the_ID(), 'popup_video_id', true)): ?>
