@@ -226,8 +226,7 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                     <div class="column mcb-column mcb-item-qh9drgmut one laptop-one tablet-one mobile-one column_breadcrumbs mfn-item-inline" style="">
                                         <div class="mcb-column-inner mfn-module-wrapper mcb-column-inner-qh9drgmut mcb-item-breadcrumbs-inner">
                                             <ul class="breadcrumbs no-link">
-                                                <li><a href="/">Home</a><span class="mfn-breadcrumbs-separator">&nbsp;&nbsp;/&nbsp;&nbsp;</span></li>
-                                                <li>Collectie</li>
+                                                <li>Verkocht</li>
                                             </ul>
                                         </div>
                                     </div>
