@@ -325,9 +325,16 @@ get_header();
 										<div class="mcb-column-inner mfn-module-wrapper mcb-item-image-inner" style="height: 100%;">
 
 											<?php if($popupId = get_post_meta(get_the_ID(), 'popup_video_id', true)): ?>
-												<a class="video_link link pum-trigger" href="<?= get_permalink() . $popupId; ?>" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; border-bottom-left-radius: 4px; color: rgb(0, 0, 0); cursor: pointer; z-index: 4;">
+												<button class="js-open-dialog" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; border-radius: 0; border-bottom-left-radius: 4px; color: rgb(0, 0, 0); cursor: pointer; z-index: 4;">
 													<i class="icon-videocam-line" style="font-size: 1.5em; color: white;"></i>
-												</a>
+												</button>
+												<dialog class="dialog js-dialog">
+													<div class="dialog__inner">
+														<button class="dialog__close js-close-dialog">Close</button>
+														<div class="dialog__body js-dialog-video" data-src="<?= $popupId; ?>">
+														</div>
+													</div>
+												</dialog>
 											<?php endif; ?>
 
 											<?php if ( !empty($images = get_field('images')) ): ?>
@@ -693,6 +700,10 @@ get_header();
 		</main>
 	</div>
 </div>
+
+<?php wp_enqueue_script('custom-popup', get_theme_file_uri('/js/custom-popup.js'), array('jquery'), MFN_THEME_VERSION, true); ?>
+
+<?php wp_enqueue_style('custom-popup', get_theme_file_uri('/css/custom-popup.css'), false, MFN_THEME_VERSION); ?>
 
 <?php wp_enqueue_style('mfn-swiper', get_theme_file_uri('/css/scripts/swiper.css'), false, MFN_THEME_VERSION); ?>
 <?php wp_enqueue_script('mfn-swiper', get_theme_file_uri('/js/swiper.js'), array('jquery'), MFN_THEME_VERSION, true); ?>

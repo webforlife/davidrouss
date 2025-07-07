@@ -10403,9 +10403,16 @@ if (! function_exists('sc_lottie')) {
 						}
 
 						if($popupId = get_post_meta($item, 'popup_video_id', true)) {
-							$output .= '<a class="video_link link pum-trigger" href="' . get_permalink() . $popupId . '" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; color: rgb(0, 0, 0); border-bottom-left-radius: 4px; cursor: pointer; z-index: 4;">
-									<i class="icon-videocam-line" style="font-size: 1.5em; color: white;"></i>
-								</a>';
+							$output .= '<button class="js-open-dialog" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; border-radius: 0; border-bottom-left-radius: 4px; color: rgb(0, 0, 0); cursor: pointer; z-index: 4;">
+											<i class="icon-videocam-line" style="font-size: 1.5em; color: white;"></i>
+										</button>
+										<dialog class="dialog js-dialog">
+											<div class="dialog__inner">
+												<button class="dialog__close js-close-dialog">Close</button>
+												<div class="dialog__body js-dialog-video" data-src="' . $popupId . '">
+												</div>
+											</div>
+										</dialog>';
 							}
 						$output .= '</figure>';
 
@@ -10443,6 +10450,8 @@ if (! function_exists('sc_lottie')) {
 
 		$output .= '</div>';
 
+		wp_enqueue_script('custom-popup', get_theme_file_uri('/js/custom-popup.js'), array('jquery'), MFN_THEME_VERSION, true);
+		wp_enqueue_style('custom-popup', get_theme_file_uri('/css/custom-popup.css'), false, MFN_THEME_VERSION);
 
 		wp_reset_postdata();
 

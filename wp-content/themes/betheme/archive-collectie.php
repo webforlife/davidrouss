@@ -210,133 +210,6 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
         }
     }
 
-/* Style for the dialog */
-
-html:has(dialog[open]) {
-    overflow: hidden;
-}
-
-body.dialog-open {
-    overflow: hidden;
-}
-
-.dialog {
-    max-inline-size: min(90vw, 70ch);
-    max-block-size: min(80vh, 100%);
-    max-block-size: min(80dvb, 100%);
-    aspect-ratio: 16 / 9;
-    margin: auto;
-    padding: 0;
-    width: 100%;
-    transition: opacity .5s;
-    border: none;
-    opacity: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.dialog iframe {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-}
-
-.dialog[open] {
-    animation: fadein .5s forwards;
-    opacity: 1;
-    pointer-events: all;
-}
-
-.dialog::backdrop {
-    animation: fadein .5s forwards;
-    background-color: rgba(0, 0, 0, .5);
-}
-
-.dialog.close[open] {
-    animation: fadeout .5s forwards;
-}
-
-.dialog.close::backdrop {
-    animation: fadeout .5s forwards;
-}
-
-.dialog__inner {
-    display: grid;
-    position: relative;
-    align-items: start;
-    max-block-size: 80vh;
-    max-block-size: 80dvb;
-    grid-template-rows: auto 1fr auto;
-}
-
-.dialog__body {
-    display: grid;
-    max-block-size: 100%; /* safari */
-    padding: 14px 24px;
-    overflow-y: auto;
-    overscroll-behavior-y: contain;
-    justify-items: flex-start;
-}
-
-.dialog__close {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-    border: none;
-    background-color: lightgray;
-    text-indent: 150%;
-    white-space: nowrap;
-    overflow: hidden;
-    z-index: 100;
-}
-
-.dialog__close::before,
-.dialog__close::after {
-    content: '';
-    position: absolute;
-    inset-block-start: 50%;
-    inset-inline-start: 25%;
-    inline-size: 50%;
-    block-size: 2px;
-    margin-block-start: -2px;
-    transform-origin: center center;
-    background-color: black !important;
-}
-
-.dialog__close::before {
-    rotate: -.125turn;
-}
-
-.dialog__close::after {
-    rotate: .125turn;
-}
-
-@keyframes fadein {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeout {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-
 </style>
 
 
@@ -480,66 +353,14 @@ body.dialog-open {
                         </div>
 
                     </section>
-
-
-
+                </div>
             </div>
-            </div>
-
-
         </main>
     </div>
 </div>
 
-<script>
+<?php wp_enqueue_script('custom-popup', get_theme_file_uri('/js/custom-popup.js'), array('jquery'), MFN_THEME_VERSION, true); ?>
 
-    function loadVideoIframe(videoPlayer) {
-
-        if (!videoPlayer) {
-            return;
-        }
-
-        const videoSrc = videoPlayer.getAttribute('data-src');
-
-        if (videoSrc) {
-            videoPlayer.innerHTML = `<iframe class="video__iframe" src="https://www.youtube.com/embed/${videoSrc}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen"></iframe>`;
-        }
-
-        videoPlayer.parentElement.classList.add('is-loaded');
-    }
-
-    const dialogs = document.querySelectorAll('.js-dialog');
-
-    dialogs.forEach(dialog => {
-
-        const dialogOpenButton = dialog.previousElementSibling;
-        const dialogCloseButton = dialog.querySelector('.js-close-dialog');
-
-        if (dialogOpenButton && dialog) {
-            dialogOpenButton.addEventListener('click', () => {
-                const currentVideo = dialog.querySelector('.js-dialog-video');
-
-                console.log('currentVideo', currentVideo);
-
-                if (currentVideo) {
-                    loadVideoIframe(currentVideo);
-                }
-
-                dialog.showModal();
-
-                dialog.setAttribute('open', 'open');
-            });
-        }
-
-        if (dialogCloseButton && dialog) {
-            dialogCloseButton.addEventListener('click', () => {
-                dialog.close();
-
-                dialog.removeAttribute('open');
-            });
-        }
-    });
-
-</script>
+<?php wp_enqueue_style('custom-popup', get_theme_file_uri('/css/custom-popup.css'), false, MFN_THEME_VERSION); ?>
 
 <?php get_footer();
