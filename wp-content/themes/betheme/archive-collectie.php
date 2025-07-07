@@ -210,6 +210,133 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
         }
     }
 
+/* Style for the dialog */
+
+html:has(dialog[open]) {
+    overflow: hidden;
+}
+
+body.dialog-open {
+    overflow: hidden;
+}
+
+.dialog {
+    max-inline-size: min(90vw, 70ch);
+    max-block-size: min(80vh, 100%);
+    max-block-size: min(80dvb, 100%);
+    aspect-ratio: 16 / 9;
+    margin: auto;
+    padding: 0;
+    width: 100%;
+    transition: opacity .5s;
+    border: none;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.dialog iframe {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+}
+
+.dialog[open] {
+    animation: fadein .5s forwards;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.dialog::backdrop {
+    animation: fadein .5s forwards;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.dialog.close[open] {
+    animation: fadeout .5s forwards;
+}
+
+.dialog.close::backdrop {
+    animation: fadeout .5s forwards;
+}
+
+.dialog__inner {
+    display: grid;
+    position: relative;
+    align-items: start;
+    max-block-size: 80vh;
+    max-block-size: 80dvb;
+    grid-template-rows: auto 1fr auto;
+}
+
+.dialog__body {
+    display: grid;
+    max-block-size: 100%; /* safari */
+    padding: 14px 24px;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    justify-items: flex-start;
+}
+
+.dialog__close {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    background-color: lightgray;
+    text-indent: 150%;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.dialog__close::before,
+.dialog__close::after {
+    content: '';
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 25%;
+    inline-size: 50%;
+    block-size: 2px;
+    margin-block-start: -2px;
+    transform-origin: center center;
+    background-color: black !important;
+}
+
+.dialog__close::before {
+    rotate: -.125turn;
+}
+
+.dialog__close::after {
+    rotate: .125turn;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
 </style>
 
 
@@ -272,9 +399,16 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                             <?= get_the_post_thumbnail($post, 'full') ?>
                                         <?php endif; ?>
                                         <?php if($popupId = get_post_meta(get_the_ID(), 'popup_video_id', true)): ?>
-                                            <a class="video_link link pum-trigger" href="<?= get_permalink() . $popupId; ?>" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; border-bottom-left-radius: 4px; color: rgb(0, 0, 0); cursor: pointer; z-index: 4;">
+                                            <button class="js-open-dialog" style="position: absolute; background-color: #ec6c03; display: flex; align-items: center; justify-content: center; top: 0; right: 0; width: 40px; height: 40px; border-radius: 0; border-bottom-left-radius: 4px; color: rgb(0, 0, 0); cursor: pointer; z-index: 4;">
                                                 <i class="icon-videocam-line" style="font-size: 1.5em; color: white;"></i>
-                                            </a>
+                                            </button>
+                                            <dialog class="dialog js-dialog">
+                                                <div class="dialog__inner">
+                                                    <button class="dialog__close js-close-dialog">Close</button>
+                                                    <div class="dialog__body js-dialog-video" data-src="<?= $popupId; ?>">
+                                                    </div>
+                                                </div>
+                                            </dialog>
                                         <?php endif; ?>
                                     </figure>
 
@@ -356,5 +490,56 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
         </main>
     </div>
 </div>
+
+<script>
+
+    function loadVideoIframe(videoPlayer) {
+
+        if (!videoPlayer) {
+            return;
+        }
+
+        const videoSrc = videoPlayer.getAttribute('data-src');
+
+        if (videoSrc) {
+            videoPlayer.innerHTML = `<iframe class="video__iframe" src="https://www.youtube.com/embed/${videoSrc}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen"></iframe>`;
+        }
+
+        videoPlayer.parentElement.classList.add('is-loaded');
+    }
+
+    const dialogs = document.querySelectorAll('.js-dialog');
+
+    dialogs.forEach(dialog => {
+
+        const dialogOpenButton = dialog.previousElementSibling;
+        const dialogCloseButton = dialog.querySelector('.js-close-dialog');
+
+        if (dialogOpenButton && dialog) {
+            dialogOpenButton.addEventListener('click', () => {
+                const currentVideo = dialog.querySelector('.js-dialog-video');
+
+                console.log('currentVideo', currentVideo);
+
+                if (currentVideo) {
+                    loadVideoIframe(currentVideo);
+                }
+
+                dialog.showModal();
+
+                dialog.setAttribute('open', 'open');
+            });
+        }
+
+        if (dialogCloseButton && dialog) {
+            dialogCloseButton.addEventListener('click', () => {
+                dialog.close();
+
+                dialog.removeAttribute('open');
+            });
+        }
+    });
+
+</script>
 
 <?php get_footer();
