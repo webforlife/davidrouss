@@ -52,6 +52,28 @@ require_once(get_theme_file_path('/functions/modules/class-mfn-dynamic-data.php'
 require_once(get_theme_file_path('/functions/theme-functions.php'));
 require_once(get_theme_file_path('/functions/theme-head.php'));
 
+
+add_filter( 'manage_collectie_posts_columns', 'collectie_header_columns', 10, 1 );
+function collectie_header_columns($columns) {
+    $new_columns = array();
+    if ( isset( $columns['cb'] ) ) {
+        $new_columns['cb'] = $columns['cb'];
+        unset( $columns['cb'] );
+    }
+    $new_columns['image'] = '<span class="aw-column-icon">' . __( 'Afbeelding', 'davidrouss') . '</span>';
+    $columns           = array_merge( $new_columns, $columns );
+    return $columns;
+}
+
+add_filter( 'manage_collectie_posts_custom_column', 'collectie_column', 10, 2 );
+function collectie_column($column_name, $id) {
+    if ($column_name === 'image') {
+        echo '<a href="' . get_edit_post_link() . '">';
+        the_post_thumbnail( [150, 150] );
+        echo '</a>';
+    }
+}
+
 /**
  * Global settings
  * */
