@@ -277,7 +277,31 @@ if ( ! class_exists( 'Mfn_Post_Type_Collectie' ) ) {
 				'rewrite' => [ 'slug' => 'collectie', 'with_front' => false ],
 				'hierarchical' => true,
 				'supports' => array( 'title', 'thumbnail', 'page-attributes', 'custom-fields' ),
+				'capabilities' => array(
+					'edit_post' => 'edit_collection',
+					'edit_posts' => 'edit_collections',
+					'edit_others_posts' => 'edit_other_collections',
+					'publish_posts' => 'publish_collections',
+					'read_post' => 'read_collection',
+					'read_private_posts' => 'read_private_collections',
+					'delete_post' => 'delete_collection'
+				),
 			);
+
+			function add_theme_caps() {
+				// gets the editor role
+				$editor = get_role( 'editor' );
+
+				$editor->add_cap( 'edit_collection' );
+				$editor->add_cap( 'edit_collections' );
+				$editor->add_cap( 'edit_other_collections' );
+				$editor->add_cap( 'publish_collections' );
+				$editor->add_cap( 'read_collection' );
+				$editor->add_cap( 'read_private_collections' );
+				$editor->add_cap( 'delete_collection' );
+			}
+
+			add_action( 'admin_init', 'add_theme_caps');
 
 			register_post_type( 'collectie', $args );
 
