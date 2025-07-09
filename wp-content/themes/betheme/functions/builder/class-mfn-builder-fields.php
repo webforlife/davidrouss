@@ -7059,6 +7059,13 @@ if( ! class_exists('Mfn_Builder_Fields') )
 				'cat' => 'loops',
 			),
 
+			'image_slider' => array(
+				'type' => 'image_slider',
+				'title' => __('Image slider', 'mfn-opts'),
+				'size' => '1/1',
+				'cat' => 'blocks',
+			),
+
 		// thank you ----------------------------------------------------
 
    			'thankyou_overview' => array(

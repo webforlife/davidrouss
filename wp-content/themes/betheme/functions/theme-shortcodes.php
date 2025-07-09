@@ -10460,6 +10460,83 @@ if (! function_exists('sc_lottie')) {
 }
 
 /**
+ * Image slider [sc_image_slider]
+ */
+
+ if (! function_exists('sc_image_slider')) {
+	function sc_image_slider($attr, $content = null) {
+
+		$title = get_field('title', get_the_ID());
+		$items = get_field('items', get_the_ID());
+		$usps = get_field('usps', get_the_ID());
+
+		$output = '<div id="image-slide" class="block">';
+
+			$output .= '<div class="hero js-hero">';
+				$output .= '<div class="block__inner">';
+					$output .= '<div class="wrap wrap--medium">';
+
+						$output .= '<div class="hero__background">';
+
+							$output .= '<div class="swipe-module swipe-module--vertical js-hero-slider">';
+								$output .= '<div class="swiper-wrapper">';
+
+                                    foreach ($items as $item) :
+
+										$output .= '<div class="swiper-slide">';
+											$output .= '<figure class="hero__image ratio">';
+												$output .= wp_get_attachment_image($item['image'], 'full', false, ['data-object-fit' => 'cover']);
+                                            $output .= '</figure>';
+                                        $output .= '</div>';
+
+                                    endforeach;
+                                $output .= '</div>';
+                            $output .= '</div>';
+						$output .= '</div>';
+
+					$output .= '<div class="hero__overlay">';
+
+						$output .= '<div class="hero__inner">';
+
+							$output .= '<div class="hero__content js-hero-content">';
+								$output .= '<h1 class="hero__title">';
+									$output .= $title;
+								$output .= '</h1>';
+
+								if (!empty($usps)) :
+									$output .= '<div class="hero__labels">';
+
+									foreach ($usps as $usp) :
+										$output .= '<div class="hero__label">';
+											$output .= $usp['title'];
+										$output .= '</div>';
+									endforeach;
+
+									$output .= '</div>';
+								endif;
+
+							$output .= '</div>';
+
+						$output .= '</div>';
+					$output .= '</div>';
+				$output .= '</div>';
+			$output .= '</div>';
+		$output .= '</div>';
+	$output .= '</div>';
+
+		wp_enqueue_style('mfn-swiper', get_theme_file_uri('/css/scripts/swiper.css'), false, MFN_THEME_VERSION);
+		wp_enqueue_script('mfn-swiper', get_theme_file_uri('/js/swiper.js'), array('jquery'), MFN_THEME_VERSION, true);
+
+		wp_enqueue_script('custom-slider', get_theme_file_uri('/js/custom-slider.js'), array('jquery'), MFN_THEME_VERSION, true);
+		wp_enqueue_style('custom-slider', get_theme_file_uri('/css/custom-slider.css'), false, MFN_THEME_VERSION);
+
+		wp_reset_postdata();
+
+		return $output;
+	}
+}
+
+/**
  * Portfolio [portfolio]
  */
 
@@ -13816,7 +13893,6 @@ if (! function_exists('mfn_shortcodes')) {
 		add_shortcode('our_team', 'sc_our_team');
 		add_shortcode('our_team_list', 'sc_our_team_list');
 		add_shortcode('photo_box', 'sc_photo_box');
-		add_shortcode('collection', 'sc_collection');
 		add_shortcode('portfolio', 'sc_portfolio');
 		add_shortcode('portfolio_grid', 'sc_portfolio_grid');
 		add_shortcode('portfolio_photo', 'sc_portfolio_photo');
@@ -13836,6 +13912,9 @@ if (! function_exists('mfn_shortcodes')) {
 		add_shortcode('testimonials_list', 'sc_testimonials_list');
 		add_shortcode('trailer_box', 'sc_trailer_box');
 		add_shortcode('zoom_box', 'sc_zoom_box');
+
+		add_shortcode('collection', 'sc_collection');
+		add_shortcode('image_slider', 'sc_image_slider');
 
 		// private
 

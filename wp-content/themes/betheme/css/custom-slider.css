@@ -1,0 +1,172 @@
+.hero {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    z-index: 100;
+}
+
+.hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero__background::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-image: url(https://redweblabs.nl/photo/wp-content/uploads/2025/01/home_hr_sectionbg3.png#49);
+    background-repeat: repeat;
+    opacity: 1;
+    z-index: 2;
+}
+
+.hero__background::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: black;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+.hero__image {
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+}
+
+.hero__image img,
+.hero__image picture {
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform .25s ease-out;
+}
+
+.hero__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.hero__overlay {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    padding: 160px 24px 56px;
+    aspect-ratio: 16 / 9;
+    flex-grow: 1;
+}
+
+.hero__inner {
+    position: relative;
+    z-index: 1;
+}
+
+.hero__content {
+    width: 100%;
+}
+
+.hero__content:not(:first-child) {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.hero__content.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero__labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hero__label {
+    color: #C1CDDE;
+    font-size: 0.7em;
+    padding: 4px 8px;
+    border: 1px solid rgba(193, 205, 222, 0.7);
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+
+.hero__title {
+    color: #C1CDDE;
+    font-size: 2.4em;
+    line-height: 1.2em;
+    text-transform: uppercase;
+}
+
+.hero__title:not(:last-child) {
+    margin-bottom: 16px;
+    border-bottom: 1px solid #C1CDDE;
+    padding-bottom: 40px;
+}
+
+.swipe-module {
+    height: 100%;
+}
+
+@media screen and (min-width: 860px) {
+
+    .hero__overlay {
+        padding: 160px 0 56px;
+    }
+
+    .hero__content:not(:first-child) {
+        bottom: 0;
+        top: auto;
+    }
+
+    .hero__title {
+        font-size: 4.2em;
+    }
+
+    .hero__title:not(:last-child) {
+        margin-bottom: 52px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .hero__overlay {
+        padding-inline: 40px;
+    }
+
+    .hero__title {
+        padding-right: 20%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+
+    .hero__title {
+        font-size: 5.2em;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    .hero__overlay {
+        max-height: 700px;
+    }
+}
+
+@media screen and (min-height: 900px) {
+    .hero__overlay {
+        max-height: 80vh;
+    }
+}

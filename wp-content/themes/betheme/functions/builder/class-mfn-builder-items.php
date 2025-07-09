@@ -1028,6 +1028,14 @@ if( ! class_exists('Mfn_Builder_Items') )
 		}
 
 		/**
+		 * [image_slider]
+		 */
+
+		public static function item_image_slider( $fields ){
+			echo sc_image_slider( $fields );
+		}
+
+		/**
 		 * [portfolio]
 		 */
 
