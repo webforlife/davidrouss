@@ -114,18 +114,24 @@
 
 .hero__title:not(:last-child) {
     margin-bottom: 16px;
-    border-bottom: 1px solid #C1CDDE;
+    border-bottom: 1px solid rgba(193, 205, 222, 0.7);
     padding-bottom: 40px;
 }
 
-.swipe-module {
+.hero .swipe-module {
     height: 100%;
+}
+
+.hero .swiper-button-prev,
+.hero .swiper-button-next {
+    display: none;
 }
 
 @media screen and (min-width: 860px) {
 
     .hero__overlay {
-        padding: 160px 0 56px;
+        padding: 160px 24px 56px;
+        min-height: 100dvh;
     }
 
     .hero__content:not(:first-child) {
@@ -147,8 +153,39 @@
         padding-inline: 40px;
     }
 
+    .hero__labels,
     .hero__title {
         padding-right: 20%;
+    }
+
+    .hero .swiper-button-prev,
+    .hero .swiper-button-next {
+        position: absolute;
+        top: auto;
+        bottom: 56px;
+        display: block;
+        left: auto;
+        width: 60px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: transparent;
+        transition: background-color 0.3s ease;
+        border: 1px solid rgba(193, 205, 222, 0.7);
+        color: rgba(193, 205, 222, 0.7);
+        padding: 0 16px;
+    }
+
+    .hero .swiper-button-prev:hover,
+    .hero .swiper-button-next:hover {
+        background-color: rgba(193, 205, 222, 0.1);
+    }
+
+    .hero .swiper-button-prev {
+        right: 112px;
+    }
+    .hero .swiper-button-next {
+        right: 40px;
+
     }
 }
 
@@ -156,17 +193,5 @@
 
     .hero__title {
         font-size: 5.2em;
-    }
-}
-
-@media screen and (max-height: 800px) {
-    .hero__overlay {
-        max-height: 700px;
-    }
-}
-
-@media screen and (min-height: 900px) {
-    .hero__overlay {
-        max-height: 80vh;
     }
 }

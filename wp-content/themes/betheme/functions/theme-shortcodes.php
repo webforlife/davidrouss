@@ -10491,6 +10491,7 @@ if (! function_exists('sc_lottie')) {
 
                                     endforeach;
                                 $output .= '</div>';
+
                             $output .= '</div>';
 						$output .= '</div>';
 
@@ -10519,6 +10520,14 @@ if (! function_exists('sc_lottie')) {
 
 						$output .= '</div>';
 					$output .= '</div>';
+
+
+					$output .= '<div class="swiper-button-prev">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.06 11.06"><path d="M24.06 5.53h-23m5-5l-5 5 5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+								</div>';
+					$output .= '<div class="swiper-button-next">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.06 11.06"><path d="M0 5.53h23m-5 5l5-5-5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+								</div>';
 				$output .= '</div>';
 			$output .= '</div>';
 		$output .= '</div>';
