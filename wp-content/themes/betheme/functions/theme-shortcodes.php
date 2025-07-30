@@ -10430,7 +10430,7 @@ if (! function_exists('sc_lottie')) {
 									$output .= '<div class="card__meta">Inschrijving: ' . $date_of_registration . '</div>';
 								}
 								if ($amount_of_pk = get_field('amount_of_pk', $item)) {
-									$output .= '<div class="card__meta">Vermogen: ' . $amount_of_pk . '</div>';
+									$output .= '<div class="card__meta">Vermogen: ' . $amount_of_pk . ' PK</div>';
 								}
 
 							$output .= '</div>';

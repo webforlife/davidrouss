@@ -305,7 +305,7 @@ if ($load_more || mfn_opts_get('blog-infinite-scroll')) {
                                             <?php endif; ?>
                                             <?php if ($amount_of_pk = get_field('amount_of_pk')): ?>
                                                 <div class="card__meta">
-                                                    Vermogen: <?= $amount_of_pk; ?>
+                                                    Vermogen: <?= $amount_of_pk; ?> PK
                                                 </div>
                                             <?php endif; ?>
                                         </div>

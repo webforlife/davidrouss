@@ -514,7 +514,7 @@ get_header();
 															<div class="grid-item">
 																<strong>Vermogen</strong>
 																<br>
-																<?= $amount_of_pk; ?>
+																<?= $amount_of_pk; ?> PK
 															</div>
 														<?php endif; ?>
 														<?php if ($gear_box = get_field('gear_box')): ?>
